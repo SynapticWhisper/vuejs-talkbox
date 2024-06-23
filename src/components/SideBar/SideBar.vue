@@ -8,10 +8,20 @@ import FrensIcon from '../icons/FrensIcon.vue'
 import SettingsIcon from '../icons/SettingsIcon.vue'
 import PowerOffIcon from '../icons/PowerOffIcon.vue'
 
-const activeButton = ref('')
+const props = defineProps({
+    defaultComponent: {
+        type: String,
+        required: true
+    }
+})
+
+const sideBarEmits = defineEmits(['select']);
+
+const activeButton = ref(props.defaultComponent)
 
 const setActiveButton = (buttonName) => {
     activeButton.value = buttonName
+    sideBarEmits("select", buttonName)
 }
 
 const sideBarOpened = ref(false)
@@ -36,6 +46,7 @@ const switchSideBar = () => {
             </template>
             </BurgerButton>
             <MenuButton
+                class="sidebar-btn"
                 :isActive="activeButton === 'profile'"
                 @update:active="() => setActiveButton('profile')"
                 title="Profile"
@@ -49,6 +60,7 @@ const switchSideBar = () => {
                 </template>
             </MenuButton>
             <MenuButton
+                class="sidebar-btn"
                 :isActive="activeButton === 'frens'"
                 @update:active="() => setActiveButton('frens')"
                 title="Frens"
@@ -60,8 +72,14 @@ const switchSideBar = () => {
                 <template #icon>
                     <FrensIcon class="btn-icon" />
                 </template>
+                <template #notification>
+                    <div class="circle">
+                        <p>+12</p>
+                    </div>
+                </template>
             </MenuButton>
             <MenuButton
+                class="sidebar-btn"
                 :isActive="activeButton === 'chat'"
                 @update:active="() => setActiveButton('chat')"
                 title="Dialogs"
@@ -73,8 +91,14 @@ const switchSideBar = () => {
                 <template #icon>
                     <ChatIcon class="btn-icon" />
                 </template>
+                <template #notification>
+                    <div class="circle">
+                        <p>92</p>
+                    </div>
+                </template>
             </MenuButton>
             <MenuButton
+                class="sidebar-btn"
                 :isActive="activeButton === 'settings'"
                 @update:active="() => setActiveButton('settings')"
                 title="Settings"
@@ -90,6 +114,7 @@ const switchSideBar = () => {
         </div>
         <div class="bottom-menu">
             <MenuButton
+                class="sidebar-btn"
                 :isActive="false"
                 title="LogOut"
             >
@@ -124,11 +149,25 @@ aside.closed {
     animation: closeSideBar 0.3s forwards;
 }
 
+.sidebar-btn:hover .btn-icon,
+.sidebar-btn:hover .btn-text
+{
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.sidebar-btn.active .btn-icon,
+.sidebar-btn.active .btn-text {
+    opacity: 1;
+}
+
 .btn-icon {
     z-index: 1;
     margin: 15px;
     min-width: 30px;
     min-height: 30px;
+    opacity: 0.6;
+    transition: opacity 0.3s;
 }
 
 .btn-text {
@@ -140,23 +179,43 @@ aside.closed {
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     animation: printedText 0.4s steps(9);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+.circle {
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    font-weight: 700;
+    font-size: 12px;
+    min-width: 16px;
+    min-height: 16px;
+    max-height: 16px;
+    padding: 3px;
+    border-radius: 8px;
+    background-color: #534283;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 2;
 }
 
 @keyframes openSideBar {
     0% {
-        width: 60px;
+        min-width: 60px;
     }
     100% {
-        width: 160px;
+        min-width: 160px;
     }
 }
 
 @keyframes closeSideBar {
     0% {
-        width: 160px;
+        min-width: 160px;
     }
     100% {
-        width: 60px;
+        min-width: 60px;
     }
 }
 

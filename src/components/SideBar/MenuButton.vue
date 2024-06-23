@@ -13,8 +13,9 @@ const handleClick = () => {
 
 <template>
     <button class="btn" :class="{ active: isActive }" @click="handleClick">
-        <slot name="icon"></slot>
-        <slot name="btn-name"></slot>
+        <slot name="notification"></slot>
+        <slot name="icon" class="icon"></slot>
+        <slot name="btn-name" class="btn-name"></slot>
     </button>
 </template>
 
@@ -30,16 +31,6 @@ const handleClick = () => {
     align-items: center;
     position: relative;
     overflow: hidden;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-}
-
-.btn:hover {
-    opacity: 1;
-}
-
-.btn.active {
-    opacity: 1;
 }
 
 .btn.active::before {
