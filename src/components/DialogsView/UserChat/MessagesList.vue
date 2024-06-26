@@ -9,7 +9,7 @@ defineProps({
 </script>
 
 <template>
-    <div class="messages-list" ref="messagesList">
+    <div class="messages-list" ref="messages">
         <div v-for="message in messages" :key="message.message_id" class="message">
             <Message :message="message"/>
         </div>

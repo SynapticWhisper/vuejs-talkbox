@@ -1,39 +1,59 @@
 <script setup>
-defineProps({
-    isActive: {
+import { ref, computed } from 'vue';
+import ProfileIcon from '../icons/ProfileIcon.vue';
+import ChatIcon from '../icons/ChatIcon.vue';
+import FrensIcon from '../icons/FrensIcon.vue';
+import SettingsIcon from '../icons/SettingsIcon.vue';
+
+const props = defineProps({
+    btnName: {
+        type: String,
+        required: true
+    },
+    sidoBarIsOpened: {
         type: Boolean,
+        required: true,
+    },
+    currentPath: {
+        type: String,
         required: true
     }
-})
-const btnEmit = defineEmits(['update:active']);
-const handleClick = () => {
-    btnEmit('update:active')
-}
+});
+
+const tmp = {
+    '#/profile': {
+        text: 'Profile',
+        btnIcon: ProfileIcon
+    },
+    '#/friends': {
+        text: 'Friends',
+        btnIcon: FrensIcon
+    },
+    '#/dialogs': {
+        text: 'Dialogs',
+        btnIcon: ChatIcon
+    },
+    '#/settings': {
+        text: 'Settings',
+        btnIcon: SettingsIcon
+    }
+};
+
+const currentButton = computed(() => {
+    return tmp[props.btnName] || {}
+});
 </script>
 
 <template>
-    <button class="btn" :class="{ active: isActive }" @click="handleClick">
+    <a :href="btnName" class="sidebar-btn" :class="{ active: currentPath === btnName }">
         <slot name="notification"></slot>
-        <slot name="icon" class="icon"></slot>
-        <slot name="btn-name" class="btn-name"></slot>
-    </button>
+        <component :is="currentButton.btnIcon" class="btn-icon"/>
+        <h2 class="btn-text">{{sidoBarIsOpened ? currentButton.text : ''}}</h2>
+    </a>
 </template>
 
 <style scoped>
-.btn {
-    min-width: 60px;
-    min-height: 60px;
-    width: 100%;
-    border: none;
-    background-color: transparent;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn.active::before {
+.sidebar-btn.active::before {
     content: '';
     position: absolute;
     top: 50%;
@@ -44,7 +64,7 @@ const handleClick = () => {
     transition: none;
 }
 
-.btn.active::after {
+.sidebar-btn.active::after {
     content: '';
     position: absolute;
     top: 0;
@@ -55,6 +75,12 @@ const handleClick = () => {
     animation: fillBackground 0.3s 0.3s forwards;
     transition: none;
 }
+
+.sidebar-btn.active .btn-icon,
+.sidebar-btn.active .btn-text {
+    opacity: 1;
+}
+
 
 @keyframes growBorder {
     0% {

@@ -32,13 +32,13 @@ defineProps({
 <template>
     <div class="message">
         <div class="message-actions">
-            <button class="btn" title="Pin message">
+            <button class="message-btn" title="Pin message">
                 <PinIcon class="icon"/>
             </button>
-            <button class="btn" title="Copy">
+            <button class="message-btn" title="Copy">
                 <CopyIcon class="icon"/>
             </button>
-            <button class="btn" title="Reply">
+            <button class="message-btn" title="Reply">
                 <ReplyIcon class="icon"/>
             </button>
         </div>
@@ -104,7 +104,7 @@ defineProps({
         linear-gradient(#000 0 0) padding-box;
 }
 
-.btn {
+.message-btn {
     width: 25px;
     height: 25px;
     margin: 1px;
@@ -116,12 +116,12 @@ defineProps({
     cursor: pointer;
 }
 
-.btn .icon {
+.message-btn .icon {
     width: 20px;
     height: 20px;
 }
 
-.btn:hover {
+.message-btn:hover {
     border: 1px solid #e8eaed4a;
     opacity: 1;
     transition: border 0.1s, opacity 0.5s;

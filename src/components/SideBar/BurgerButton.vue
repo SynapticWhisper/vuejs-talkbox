@@ -12,37 +12,20 @@ const handleClick = () => {
 </script>
 
 <template>
-    <button class="btn" @click="handleClick" :title="isActive ? 'Hide menu' : 'Show menu'">
+    <button class="sidebar-btn" @click="handleClick" :title="isActive ? 'Hide menu' : 'Show menu'">
         <div class="burger" :class="{ active: isActive }">
             <span class="line first"></span>
             <span class="line second"></span>
             <span class="line third"></span>
             <span class="line fourth"></span>
         </div>
-        <slot name="btn-name"></slot>
+        <h2 class="btn-text">{{isActive ? 'Hide' : ''}}</h2>
     </button>
 </template>
 
 <style scoped>
-.btn {
-    background-color: transparent;
-    border: none;
-    min-width: 60px;
-    width: 100%;
-    min-height: 60px;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    opacity: 0.6;
-    transition: opacity 0.3s;
-}
-
-.btn:hover {
-    opacity: 1;
-    transition: opacity 0.3s;
-}
-
 .burger {
+    opacity: 0.6;
     position: relative;
     margin: 18px;
     min-width: 24px;

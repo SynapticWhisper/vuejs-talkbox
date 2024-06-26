@@ -4,22 +4,10 @@ import ColoredThubUpIcon from '../icons/ColoredThumbUpIcon.vue';
 import ColoredChatIcon from '../icons/ColoredChatIcon.vue';
 import ColoredAttachMoneyIcon from '../icons/ColoredAttachMoneyIcon.vue';
 
-defineProps({
-    userFriends: {
-        type: Number,
-        required: true
-    },
-    userSubs: {
-        type: Number,
-        required: true
-    },
-    userPosts: {
-        type: Number,
-        required: true
-    },
-    userMoney: {
-        type: Number,
-        required: true
+const props = defineProps({
+    user: {
+        type: Object,
+        required: true,
     }
 })
 </script>
@@ -30,19 +18,19 @@ defineProps({
         <div class="user-stats">
             <div class="stats-col frens">
                 <ColoredGroupIcon class="icon"/>
-                <h3>{{ userFriends }} Friends</h3>
+                <h3>{{ props.user.stats.friends.length }} Friends</h3>
             </div>
             <div class="stats-col subs">
                 <ColoredThubUpIcon class="icon"/>
-                <h3>{{ userSubs }} Subs</h3>
+                <h3>{{ props.user.stats.subs.length }} Subs</h3>
             </div>
             <div class="stats-col posts">
                 <ColoredChatIcon class="icon"/>
-                <h3>{{ userPosts }} Posts</h3>
+                <h3>{{ props.user.stats.posts.length }} Posts</h3>
             </div>
             <div class="stats-col cache">
                 <ColoredAttachMoneyIcon class="icon"/>
-                <h3>{{ userMoney }} $</h3>
+                <h3>{{ props.user.stats.balance }} $</h3>
             </div>
         </div>
     </div>

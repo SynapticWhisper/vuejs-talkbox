@@ -3,21 +3,9 @@ import { computed } from 'vue';
 import { format } from 'date-fns';
 
 const props = defineProps({
-    username: {
-        type: String,
+    user: {
+        type: Object,
         required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    birthday: {
-        type: [Date, String],
-        required: true
-    },
-    telegram: {
-        type: String,
-        required: false
     }
 });
 const prepareDate = (date) => {
@@ -26,19 +14,19 @@ const prepareDate = (date) => {
     }
     return format(date, "d MMM yyyy");
 };
-const preparedDate = computed(() => prepareDate(props.birthday));
+const preparedDate = computed(() => prepareDate(props.user.birth_date));
 </script>
 
 <template>
     <div class="profile-info">
-        <h2>{{ props.username }}</h2>
+        <h2>{{ props.user.username }}</h2>
         <div class="common-info">
             <h3 class="email-key">Email: </h3>
-            <h3 class="email-value">{{ props.email }}</h3>
+            <h3 class="email-value">{{ props.user.email }}</h3>
             <h3 class="birthday-key">Birthday: </h3>
             <h3 class="birthday-value">{{ preparedDate }}</h3>
             <h3 class="telegram-key">Telegram: </h3>
-            <h3 class="telegram-value"><a href="#" class="text">{{ props.telegram }}</a></h3>
+            <h3 class="telegram-value"><a href="#" class="text">{{ "@" + props.user.telegram_username }}</a></h3>
         </div>
     </div>
 </template>

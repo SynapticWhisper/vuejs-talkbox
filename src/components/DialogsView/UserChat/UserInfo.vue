@@ -2,8 +2,8 @@
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 import MoreVertIcon from '@/components/icons/MoreVertIcon.vue';
 defineProps({
-    userPhotoUrl: {
-        type: [String, null],
+    targetUser: {
+        type: Object,
         required: true
     }
 })
@@ -14,10 +14,10 @@ const defaultPhotoUrl = 'src/components/pictures/anon_user.png';
 <template>
     <div class="user-info">
         <div class="user-picture">
-            <img class="profile-avatar" :src="userPhotoUrl || defaultPhotoUrl" alt="User Avatar">
+            <img class="profile-avatar" :src="targetUser.photo_url || defaultPhotoUrl" alt="User Avatar">
         </div>
-        <h3 class="username">Username</h3>
-        <p class="last-seen">Last seen recently</p>
+        <h3 class="username">{{ targetUser.name }}</h3>
+        <p class="last-seen">{{ targetUser.last_visit }}</p>
         <button class="btn" id="search">
             <SearchIcon class="icon"/>
         </button>

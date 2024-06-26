@@ -1,15 +1,15 @@
 <script setup>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 import MessagesList from './MessagesList.vue';
 import CreateMessage from './CreateMessage.vue';
 import UserInfo from './UserInfo.vue';
 
-const messagesList = ref([
+const messagesList = reactive([
     {
         'message_id': 1,
         'from_user': 123,
         'to_user': 122,
-        'message_date': "23.06.2024 19:19",
+        'message_date': "19:19",
         'message_edited': true,
         'message_status': 'Readen', 
         'message_text': "Привет, Борис!"
@@ -18,12 +18,19 @@ const messagesList = ref([
         'message_id': 2,
         'from_user': 122,
         'to_user': 123,
-        'message_date': "23.06.2024 19:23",
+        'message_date': "19:23",
         'message_edited': false,
         'message_status': 'Delivered', 
         'message_text': "Привет, Алиса! Как дела?"
     },
-])
+]);
+
+const targetUser = reactive({
+    id: 122,
+    name: "Username",
+    photo_url: null,
+    last_visit: 'Last seen recently'
+});
 
 // При открытии диалога надо будет отправлять запрос на сервер, чтобы получить последние N сообщений
 // потому что через вебсокет мы будем получать сообщения от пользователей не пачкой (N сообщений из диалога),
@@ -44,7 +51,7 @@ const sendMessage = (messageText) => {
         'message_id': 3,
         'from_user': 123,
         'to_user': 122,
-        'message_date': "23.06.2024 19:30",
+        'message_date': "19:30",
         'message_edited': false,
         'message_status': 'Delivered', 
         'message_text': messageText
@@ -54,7 +61,7 @@ const sendMessage = (messageText) => {
 
 <template>
     <div class="dialog">
-        <UserInfo />
+        <UserInfo :targetUser="targetUser"/>
         <MessagesList :messages="messagesList"/>
         <CreateMessage @send="sendMessage"/>
     </div>

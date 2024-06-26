@@ -1,43 +1,25 @@
 <script setup>
 import { ref } from 'vue';
+import { useFetch } from './fetch.js'
 import ProfileInfo from './ProfileInfo.vue';
 import ProfileBio from './ProfileBio.vue';
 import ProfilePhoto from './ProfilePhoto.vue';
 import ProfileStats from './ProfileStats.vue';
 
-const userName = ref("User Name");
-const userEmail = ref("example@example.com");
-const userBirthday = ref(new Date('2000-01-01'));
-const userTelegram = ref("@telegram_username");
-const userBio = ref("Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus distinctio officia fuga iste animi. Sed velit, tempore similique soluta facilis architecto obcaecati voluptatibus ut, et, cumque molestias doloremque autem nesciunt.")
-const userPhotoUrl = ref(null)
-const userFriends = ref(123)
-const userSubs = ref(80)
-const userPosts = ref(12)
-const userMoney = ref(512.5)
-
+const testUserUrl = ref('/UserFromApi.json');
+const { data: user, error, isLoading } = useFetch(testUserUrl.value);
 </script>
 
 <template>
     <main>
-        <div class="profile-container">
-            <ProfileInfo 
-                :username="userName"
-                :email="userEmail"
-                :birthday="userBirthday"
-                :telegram="userTelegram"
-            />
-            <ProfileBio 
-                :userBio="userBio"
-            />
-            <ProfilePhoto :userPhotoUrl="userPhotoUrl"/>
-            <ProfileStats 
-                :userFriends="userFriends"
-                :userSubs="userSubs"
-                :userPosts="userPosts"
-                :userMoney="userMoney"
-            />
+        <div class="profile-container" v-if="!isLoading && user">
+            <ProfileInfo :user="user" />
+            <ProfileBio :userBio="user.bio" />
+            <ProfilePhoto :userPhotoUrl="user.profile_picture_url" />
+            <ProfileStats :user="user" />
         </div>
+        <div v-else-if="isLoading">Loading...</div>
+        <div v-else-if="error">Error loading data: {{ error.message }}</div>
     </main>
 </template>
 

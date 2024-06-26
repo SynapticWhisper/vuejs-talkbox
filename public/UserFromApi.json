@@ -1,0 +1,22 @@
+{
+    "id": 0,
+    "username": "Spudemun",
+    "email": "spudemun@gmail.com",
+    "birth_date": "2000-01-01",
+    "registration_date": "2024-06-26",
+    "last_login": "2024-06-26T18:22:41.449Z",
+    "telegram_id": 111222333,
+    "telegram_username": "spudemun",
+    "profile_picture_url": "https://avatars.mds.yandex.net/get-shedevrum/12421798/img_de0e330cee0611eeb656be9d2539cf71/orig",
+    "stats": {
+        "friends": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        "subs": [1, 2, 3, 4, 5, 6],
+        "posts": [1, 2, 3],
+        "balance": 123.5
+    },
+    "bio": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatibus distinctio officia fuga iste animi. Sed velit, tempore similique soluta facilis architecto obcaecati voluptatibus ut, et, cumque molestias doloremque autem nesciunt.",
+    "email_confirmed": true,
+    "two_factor_auth": true,
+    "mailing_allowed": true,
+    "telegram_mailing_allowed": true
+}
