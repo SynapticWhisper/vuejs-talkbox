@@ -7,3 +7,18 @@ body {
     font-family: 'Montserrat', sans-serif;
     display: flex;
 }
+
+main {
+    flex-grow: 1;
+    box-sizing: border-box;
+    background-color: #222222;
+}
+
+.container {
+    background-color: #2a2a2a;
+    box-shadow: 0 0 5px rgba(0, 170, 255, 0.6);
+    box-sizing: border-box;
+    margin: auto;
+    display: grid;
+    transition: all 0.3s;
+}

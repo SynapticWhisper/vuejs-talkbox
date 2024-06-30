@@ -37,28 +37,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-.profile-stats {
-    grid-row: 2;
-    grid-column: 1 / span 2;
-}
-
-.user-stats {
-    display: grid;
-    grid-template-columns: 25%;
-}
-
-.stats-col {
-    grid-row: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.stats-col .icon {
-    margin: auto;
-    min-width: 48px;
-    min-height: 48px;
-}
+@import url('../../assets/profileview-styles.css');
 
 .stats-col h3 {
     font-size: 16pt;

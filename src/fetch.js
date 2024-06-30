@@ -1,5 +1,9 @@
 import { ref, onMounted } from 'vue';
 
+async function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export function useFetch(url) {
     const data = ref(null);
     const error = ref(null);

@@ -1,0 +1,28 @@
+[
+    {
+        "message_id": 115,
+        "sender_id": 122,
+        "receiver_id": 123,
+        "message_status": "Readen",
+        "message_edited": true,
+        "departure_date": "2024-06-26T18:15:41.449Z",
+        "message_content": {
+            "message_text": "Привет, Борис!",
+            "message_pictures": [],
+            "message_files": []  
+        }
+    },
+    {
+        "message_id": 116,
+        "sender_id": 123,
+        "receiver_id": 122,
+        "message_status": "Delivered",
+        "message_edited": true,
+        "departure_date": "2024-06-26T18:18:47.449Z",
+        "message_content": {
+            "message_text": "Привет, Алиса! Как дела?",
+            "message_pictures": [],
+            "message_files": []  
+        }
+    }
+]

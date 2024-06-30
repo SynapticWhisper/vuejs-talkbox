@@ -5,8 +5,8 @@ import MenuButton from './MenuButton.vue'
 import LogOutButton from './LogOutButton.vue';
 
 
-defineProps({
-    currentPath: {
+const props = defineProps({
+    currentComponent: {
         type: String,
         required: true,
     },
@@ -33,14 +33,14 @@ const logOut = () => {
                 @update:active="switchSideBar"
             >
             </BurgerButton>
-            <MenuButton :btnName="'#/profile'"
+            <MenuButton :btnName="'profile'"
                 :sidoBarIsOpened="sideBarOpened"
-                :currentPath="currentPath"
+                :currentComponent="props.currentComponent"
                 title="Profile"
             />
-            <MenuButton :btnName="'#/friends'"
+            <MenuButton :btnName="'friends'"
                 :sidoBarIsOpened="sideBarOpened"
-                :currentPath="currentPath"
+                :currentComponent="props.currentComponent"
                 title="Frens"
             >
                 <template #notification>
@@ -49,9 +49,9 @@ const logOut = () => {
                     </div>
                 </template>
             </MenuButton>
-            <MenuButton :btnName="'#/dialogs'"
+            <MenuButton :btnName="'dialogs'"
                 :sidoBarIsOpened="sideBarOpened"
-                :currentPath="currentPath"
+                :currentComponent="props.currentComponent"
                 title="Dialogs"
             >
                 <template #notification>
@@ -60,9 +60,9 @@ const logOut = () => {
                     </div>
                 </template>
             </MenuButton>
-            <MenuButton :btnName="'#/settings'"
+            <MenuButton :btnName="'settings'"
                 :sidoBarIsOpened="sideBarOpened"
-                :currentPath="currentPath"
+                :currentComponent="props.currentComponent"
                 title="Settings"
             />
         </div>

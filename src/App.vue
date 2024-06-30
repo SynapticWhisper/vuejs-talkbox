@@ -8,8 +8,8 @@ import DialogsView from './components/DialogsView/DialogsView.vue'
 
 const routes = {
 	'/': NotFound,
-	'/profile': ProfileView,
-	'/dialogs': DialogsView
+	'profile': ProfileView,
+	'dialogs': DialogsView
 }
 
 const currentPath = ref(window.location.hash)
@@ -19,12 +19,16 @@ window.addEventListener('hashchange', () => {
 })
 
 const currentView = computed(() => {
-	return routes[currentPath.value.slice(1) || '/'] || NotFound
+	return routes[currentPath.value.split('/')[1] || '/'] || NotFound
+})
+
+const currentComponent = computed(() => {
+	return currentPath.value.split('/')[1] || '/'
 })
 </script>
 
 <template>
-    <SideBar :currentPath="currentPath"/>
+    <SideBar :currentComponent="currentComponent"/>
     <component :is="currentView" />
 </template>
 

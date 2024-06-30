@@ -15,8 +15,5 @@ defineProps({
 </template>
 
 <style scoped>
-.profile-bio {
-    grid-row: 3;
-    grid-column: 1 / span 2;
-}
+@import url('../../assets/profileview-styles.css');
 </style>

@@ -71,12 +71,9 @@ const defaultPhotoUrl = 'src/components/pictures/anon_user.png';
 
 .btn {
     grid-row: 1 / span 2;
-    background-color: transparent;
-    border: none;
     opacity: 0.6;
     max-width: 30px;
     transition: all 0.5s;
-    cursor: pointer;
 }
 
 .btn:hover {

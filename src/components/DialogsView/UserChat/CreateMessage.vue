@@ -41,9 +41,6 @@ const sendMessageTask = () => {
 .btn {
     width: 60px;
     height: 60px;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
 }
 
 .btn.send-message,

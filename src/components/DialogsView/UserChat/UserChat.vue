@@ -73,5 +73,6 @@ const sendMessage = (messageText) => {
     max-height: 100vh;
     display: grid;
     grid-template-rows: 60px auto 60px;
+    background-color: #323232;
 }
 </style>

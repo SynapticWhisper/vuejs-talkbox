@@ -32,17 +32,7 @@ const preparedDate = computed(() => prepareDate(props.user.birth_date));
 </template>
 
 <style scoped>
-.profile-info {
-    grid-row: 1;
-    grid-column: 1;
-}
-
-.common-info {
-    padding: 20px 0;
-    display: grid;
-    gap: 18px;
-    grid-template-columns: 100px;
-}
+@import url('../../assets/profileview-styles.css');
 
 .common-info .email-key,
 .common-info .birthday-key,

@@ -21,20 +21,9 @@ const defaultPhotoUrl = 'src/components/pictures/anon_user.png';
 </template>
 
 <style scoped>
-.profile-picture {
-    grid-row: 1;
-    grid-column: 2;
-    margin: auto;
-    max-width: 210px;
-    max-height: 210px;
-    align-content: center;
-    text-align: center;
-}
+@import url('../../assets/profileview-styles.css');
 
 .profile-avatar {
-    max-width: 200px;
-    max-height: 200px;
-    border-radius: 50%;
     border: 3px solid #00aaff;
 }
 

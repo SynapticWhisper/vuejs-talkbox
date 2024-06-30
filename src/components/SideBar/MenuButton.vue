@@ -14,26 +14,26 @@ const props = defineProps({
         type: Boolean,
         required: true,
     },
-    currentPath: {
+    currentComponent: {
         type: String,
         required: true
     }
 });
 
 const tmp = {
-    '#/profile': {
+    'profile': {
         text: 'Profile',
         btnIcon: ProfileIcon
     },
-    '#/friends': {
+    'friends': {
         text: 'Friends',
         btnIcon: FrensIcon
     },
-    '#/dialogs': {
+    'dialogs': {
         text: 'Dialogs',
         btnIcon: ChatIcon
     },
-    '#/settings': {
+    'settings': {
         text: 'Settings',
         btnIcon: SettingsIcon
     }
@@ -45,7 +45,7 @@ const currentButton = computed(() => {
 </script>
 
 <template>
-    <a :href="btnName" class="sidebar-btn" :class="{ active: currentPath === btnName }">
+    <a :href="`#/${btnName}`" class="sidebar-btn" :class="{ active: currentComponent === btnName }">
         <slot name="notification"></slot>
         <component :is="currentButton.btnIcon" class="btn-icon"/>
         <h2 class="btn-text">{{sidoBarIsOpened ? currentButton.text : ''}}</h2>
