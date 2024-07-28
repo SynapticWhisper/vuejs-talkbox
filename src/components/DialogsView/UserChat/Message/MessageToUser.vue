@@ -21,10 +21,19 @@ defineProps({
         required: true
     }
 })
+// Динамический импорт изображения
+const defaultPhotoUrl = new URL('@/components/pictures/anon_user.png', import.meta.url).href;
 </script>
 
 <template>
     <div class="message">
+        <div class="user-picture">
+            <img
+                class="profile-avatar"
+                :src="defaultPhotoUrl"
+                alt="User Avatar"
+            />
+        </div>
         <div class="message-container">
             <div class="bubble">
                 {{ messageText }}
@@ -52,6 +61,25 @@ defineProps({
 @import url('../../../../assets/message-styles.css');
 .message-actions {
     justify-content: start;
+    position: relative;
+    left: -15px;
+    z-index: 1;
+}
+
+.user-picture {
+    grid-row: 1 / 3;
+    grid-column: 1;
+    margin: auto;
+    max-width: 50px;
+    max-height: 50px;
+    align-content: center;
+    text-align: center;
+}
+
+.profile-avatar {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 50%;
 }
 
 .bubble {

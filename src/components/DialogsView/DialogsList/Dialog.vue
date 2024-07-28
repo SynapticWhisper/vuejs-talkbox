@@ -93,15 +93,11 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
     background-color: rgba(255, 255, 255, 0);
     border-radius: 12px;
     display: grid;
-    gap: 4px 6px;
+    gap: 2px 6px;
     padding: 10px;
     margin: 4px;
     grid-template-columns: 60px 150px auto 30px;
     grid-template-rows: 28px 28px;
-}
-
-.user-chat.active {
-    background-color: rgb(0, 68, 102, 75%);
 }
 
 .target-username {
@@ -122,16 +118,17 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
 }
 
 .profile-avatar {
-    max-width: 55px;
-    max-height: 55px;
+    max-width: 60px;
+    max-height: 60px;
     border-radius: 50%;
-    border: 3px solid #00aaff;
 }
 
 .last-message {
     grid-column: 2 / 4;
     grid-row: 2;
     font-size: 10pt;
+    font-weight: bolder;
+    align-content: center;
     opacity: 0.7;
 }
 
@@ -155,13 +152,27 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    font-weight: 700;
-    font-size: 12px;
+    font-weight: bold;
+    font-size: 14px;
     width: 20px;
     height: 20px;
     padding: 3px;
     border-radius: 50%;
-    background-color: #666666;
+    background-color: #8774e1;
     align-content: center;
+}
+
+.user-chat.active {
+    background-color: #8774e1;
+}
+
+.user-chat.active .last-message,
+.user-chat.active .message-time {
+    opacity: 1;
+}
+
+.user-chat.active .circle {
+    color: #8774e1;
+    background-color: #ffffff;
 }
 </style>

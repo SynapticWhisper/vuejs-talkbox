@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Dialog from './Dialog.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
+import CloseIcon from '@/components/icons/CloseIcon.vue';
 
 const props = defineProps({
     chatList: {
@@ -28,8 +29,13 @@ onBeforeUnmount(() => {
 <template>
     <div class="dialogs-list">    
         <div class="dialogs-search">
-            <input type="text">
-            <SearchIcon class="icon"/>
+            <div class="search-view">
+                <SearchIcon class="icon"/>
+                <input type="text" class="search-input">
+                <button class="clear-search" id="clear-search">
+                    <CloseIcon class="icon"/>
+                </button>
+            </div>
         </div>
         <a :href="`${dialogsStaticHash}/${chat.id}`" v-for="chat in chatList" :key="chat.id" class="chat">
             <Dialog
@@ -50,28 +56,68 @@ onBeforeUnmount(() => {
 }
 
 .dialogs-search {
-    display: flex;
-    justify-content: center;
     height: 60px;
-    position: relative;
+    align-content: center;
 }
 
-.dialogs-search input {
-    height: 36px;
+.search-view {
+    max-height: 36px;
     width: 90%;
     background-color: #444444;
+    box-sizing: border-box;
     margin: auto;
-    border: none;
+    border: 3px solid #444444;
     border-radius: 18px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
 }
 
-.dialogs-search .icon {
+.search-view input {
+    background-color: transparent;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    flex-grow: 1;
+    margin-left: 5px;
+    margin-right: 0px;
+}
+
+.search-view .icon {
+    display: flex;
+    align-items: center;
     width: 24px;
     height: 24px;
-    position: absolute;
-    top: 50%;
-    transform: translate(0, -50%);
-    right: 30px;
+}
+
+.clear-search {
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    padding: 3px;
+    position: relative;
+    right: -4px;
+}
+
+.clear-search:hover {
+    background-color: rgba(255, 255, 255, 10%);
+}
+
+.search-view:focus-within {
+    border: 3px solid #8774e1;
+}
+
+.search-view:focus-within .icon {
+    fill: #8774e1;
+}
+
+.search-view:focus-within .clear-search:hover {
+    background-color: rgba(135, 116, 225, 25%);
 }
 
 .dialogs-list:hover::-webkit-scrollbar {
@@ -93,17 +139,17 @@ onBeforeUnmount(() => {
 }
 
 .chat.active .user-chat {
-    background-color: #534283;
+    background-color: #8774e1;
 }
 </style>
 
 <style>
 .chat:hover .user-chat {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 7%);
 }
 
 .chat:hover .user-chat.active {
-    background-color: rgb(0, 68, 102, 75%);
+    background-color: #8774e1;
 }
 
 a {
