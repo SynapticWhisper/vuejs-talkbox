@@ -2,7 +2,7 @@
     {
         "id": 122,
         "username": "Teste 123",
-        "last_login": "2024-06-26T18:22:41.449Z",
+        "last_login": "2024-07-28T18:22:41.449Z",
         "profile_picture_url": null,
         "last_message": {
             "message_id": 116,
@@ -10,7 +10,7 @@
             "receiver_id": 122,
             "message_status": "Readen",
             "message_edited": true,
-            "departure_date": "2024-06-26T18:15:41.449Z",
+            "departure_date": "2024-07-28T18:15:41.449Z",
             "message_content": {
                 "message_text": "Привет, Алиса! Как дела?",
                 "message_pictures": [],
@@ -21,7 +21,7 @@
     {
         "id": 124,
         "username": "Tester 124",
-        "last_login": "2024-06-26T15:22:41.449Z",
+        "last_login": "2024-07-26T15:22:41.449Z",
         "profile_picture_url": "https://avatars.mds.yandex.net/get-shedevrum/12421798/img_de0e330cee0611eeb656be9d2539cf71/orig",
         "last_message": {
             "message_id": 117,
@@ -29,7 +29,7 @@
             "receiver_id": 123,
             "message_status": "Delivered",
             "message_edited": true,
-            "departure_date": "2024-06-26T18:15:41.449Z",
+            "departure_date": "2024-07-26T18:15:41.449Z",
             "message_content": {
                 "message_text": "Ok! See you later!",
                 "message_pictures": [],

@@ -29,13 +29,14 @@ const defaultPhotoUrl = 'src/components/pictures/anon_user.png';
 
 <style scoped>
 .user-info {
-    min-height: 60px;
+    min-height: 40px;
     box-sizing: border-box;
     background-color: #2a2a2a;
     display: grid;
     grid-template-columns: 50px auto 30px 30px;
     grid-template-rows: 25px 25px; 
     padding: 5px 12px;
+    align-content: center;
 }
 
 .user-picture {
@@ -49,8 +50,9 @@ const defaultPhotoUrl = 'src/components/pictures/anon_user.png';
 }
 
 .profile-avatar {
-    max-width: 45px;
-    max-height: 45px;
+    box-sizing: border-box;
+    max-width: 50px;
+    max-height: 50px;
     border-radius: 50%;
     border: 3px solid #00aaff;
 }

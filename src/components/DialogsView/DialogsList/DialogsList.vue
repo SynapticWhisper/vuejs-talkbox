@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineProps } from 'vue';
+import { ref, onMounted, onBeforeUnmount } from 'vue';
 import Dialog from './Dialog.vue';
 import SearchIcon from '@/components/icons/SearchIcon.vue';
 
@@ -9,8 +9,20 @@ const props = defineProps({
         required: true
     }
 });
-
+const dialogsStaticHash = '#/dialogs'
 const currentHash = ref(window.location.hash)
+
+const updateHash = () => {
+    currentHash.value = window.location.hash;
+};
+
+onMounted(() => {
+    window.addEventListener('hashchange', updateHash);
+});
+
+onBeforeUnmount(() => {
+    window.removeEventListener('hashchange', updateHash);
+});
 </script>
 
 <template>
@@ -19,8 +31,11 @@ const currentHash = ref(window.location.hash)
             <input type="text">
             <SearchIcon class="icon"/>
         </div>
-        <a :href="`${currentHash}/${chat.id}`" v-for="chat in chatList" :key="chat.id" class="chat">
-            <Dialog :dialog="chat" />
+        <a :href="`${dialogsStaticHash}/${chat.id}`" v-for="chat in chatList" :key="chat.id" class="chat">
+            <Dialog
+            :dialog="chat"
+            :isActive="`${dialogsStaticHash}/${chat.id}` === currentHash" 
+            />
         </a>
     </div>
 </template>
@@ -85,6 +100,10 @@ const currentHash = ref(window.location.hash)
 <style>
 .chat:hover .user-chat {
     background-color: rgba(255, 255, 255, 0.1);
+}
+
+.chat:hover .user-chat.active {
+    background-color: rgb(0, 68, 102, 75%);
 }
 
 a {

@@ -26,11 +26,14 @@ if (error.value) {
 <style scoped>
 main {
     padding: 0 20px;
+    display: flex;
 }
 
 .dialogs {
     max-width: 1024px;
-    height: 100vh;
+    flex-grow: 1;
+    margin: 12px auto;
+    border-radius: 12px;
     gap: 0px;
     grid-template-columns: 340px auto;
 }

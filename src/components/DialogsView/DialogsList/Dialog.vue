@@ -7,18 +7,38 @@ const props = defineProps({
         type: Object,
         required: true,
     },
-});
-
+    isActive: {
+        type: Boolean,
+        required: true,
+    }
+}); 
 // Динамический импорт изображения
 const defaultPhotoUrl = new URL('@/components/pictures/anon_user.png', import.meta.url).href;
 
 const my_id = 124;
 
-const prepareDate = (date) => {
-    if (typeof date === 'string') {
-        date = new Date(date);
+const getWeekNumber = (date) => {
+    var date = new Date(date.getTime());
+    date.setHours(0, 0, 0, 0);
+    date.setDate(date.getDate() + 3 - (date.getDay() + 6) % 7);
+    var week1 = new Date(date.getFullYear(), 0, 4);
+    return 1 + Math.round(((date.getTime() - week1.getTime()) / 86400000 - 3 + (week1.getDay() + 6) % 7) / 7);
+}
+
+const prepareDate = (dateStr) => {
+    let currentDate = new Date();
+    let givenDate = new Date(dateStr);
+    if (givenDate.getUTCDate() === currentDate.getUTCDate() && 
+    givenDate.getUTCMonth() === currentDate.getUTCMonth() &&
+    givenDate.getUTCFullYear() === currentDate.getUTCFullYear()) {
+        return format(givenDate, 'H:mm')
+    } else if (givenDate.getUTCFullYear() === currentDate.getUTCFullYear() && 
+    getWeekNumber(currentDate) === getWeekNumber(givenDate)) {
+        return format(givenDate, 'EEE')
+    } else {
+        return format(givenDate, 'd MM yyyy'); // Пример формата даты
     }
-    return format(date, 'd MMM yyyy'); // Пример формата даты
+    
 };
 
 const getShortMessageContent = () => {
@@ -43,7 +63,7 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
 </script>
 
 <template>
-    <div class="user-chat">
+    <div class="user-chat" :class="{ active: isActive }">
         <div class="user-picture">
             <img
                 class="profile-avatar"
@@ -54,10 +74,12 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
         <h3 class="target-username">{{ props.dialog.username }}</h3>
         <p class="last-message">{{ lastMessageShortCut }}</p>
         <p class="message-time">{{ preparedDate }}</p>
-        <div class="circle" v-if="props.dialog.id === props.dialog.last_message.sender_id">
-            <p>+1</p>
+        <div class="circle-container">
+            <div class="circle" v-if="props.dialog.id === props.dialog.last_message.sender_id">
+                <p>+1</p>
+            </div>
+            <div v-else class="empty-circle"></div>
         </div>
-        <div v-else class="empty-circle"></div>
     </div>
 </template>
 
@@ -71,11 +93,15 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
     background-color: rgba(255, 255, 255, 0);
     border-radius: 12px;
     display: grid;
-    gap: 0 5px;
+    gap: 4px 6px;
     padding: 10px;
     margin: 4px;
-    grid-template-columns: 60px 200px 50px;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 60px 150px auto 30px;
+    grid-template-rows: 28px 28px;
+}
+
+.user-chat.active {
+    background-color: rgb(0, 68, 102, 75%);
 }
 
 .target-username {
@@ -86,7 +112,7 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
 }
 
 .user-picture {
-    grid-row: 1 / span 2;
+    grid-row: 1 / 3;
     grid-column: 1;
     margin: auto;
     max-width: 60px;
@@ -103,23 +129,29 @@ const preparedDate = computed(() => prepareDate(props.dialog.last_message.depart
 }
 
 .last-message {
-    grid-column: 2;
+    grid-column: 2 / 4;
     grid-row: 2;
     font-size: 10pt;
     opacity: 0.7;
 }
 
 .message-time {
-    grid-column: 3;
+    grid-column: 3 / 5;
     grid-row: 1;
     font-size: 10pt;
     opacity: 0.7;
     align-content: center;
+    text-align: end;
+}
+
+.circle-container {
+    grid-row: 2;
+    grid-column: 4;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .circle {
-    grid-column: 3;
-    grid-row: 2;
     color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     text-align: center;

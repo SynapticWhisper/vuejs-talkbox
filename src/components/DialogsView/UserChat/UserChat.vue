@@ -74,5 +74,8 @@ const sendMessage = (messageText) => {
     display: grid;
     grid-template-rows: 60px auto 60px;
     background-color: #323232;
+    overflow: hidden;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 </style>
