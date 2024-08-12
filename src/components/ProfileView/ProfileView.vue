@@ -33,9 +33,6 @@ const { data: user, error, isLoading } = useFetch(testUserUrl.value);
 
 <style>
 .profile h2 {
-    padding-bottom: 12px;
-    border-bottom: 2px solid #0070A6;
-    margin-bottom: 12px;
     color: #00aaff;
 }
 </style>

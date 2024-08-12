@@ -37,7 +37,7 @@ main {
 }
 
 .common-info {
-    padding: 20px 0;
+    padding: 0 0 20px 0;
     display: grid;
     gap: 18px;
     grid-template-columns: 100px;
@@ -52,7 +52,7 @@ main {
 
 .user-stats {
     display: grid;
-    grid-template-columns: 25%;
+    grid-template-columns: 33%;
 }
 
 .stats-col {
@@ -66,4 +66,35 @@ main {
     margin: auto;
     min-width: 48px;
     min-height: 48px;
+}
+
+.cpmponent-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #0070A6;
+    margin-bottom: 12px;
+}
+
+.edit-profile-info {
+    border: 2px solid transparent;
+    padding: 3px;
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 12pt;
+    opacity: 0.2;
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+    padding-right: 7px;
+}
+
+.edit-profile-info:hover {
+    opacity: 0.5;
+    border: 2px solid #ffffff;
+    border-radius: 7px;
+}
+
+.edit-profile-info .icon {
+    width: 22px;
 }

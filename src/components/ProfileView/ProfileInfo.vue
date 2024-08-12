@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue';
 import { format } from 'date-fns';
+import EditIcon from '../icons/EditIcon.vue';
 
 const props = defineProps({
     user: {
@@ -19,14 +20,19 @@ const preparedDate = computed(() => prepareDate(props.user.birth_date));
 
 <template>
     <div class="profile-info">
-        <h2>{{ props.user.username }}</h2>
+        <div class="cpmponent-header">
+            <h2>{{ props.user.name }}</h2>
+            <button class="edit-profile-info">
+                <EditIcon class="icon"/>
+                edit
+            </button>
+        </div>
         <div class="common-info">
-            <h3 class="email-key">Email: </h3>
-            <h3 class="email-value">{{ props.user.email }}</h3>
+            <h3 class="status">{{ props.user.status }}</h3>
+            <h3 class="username-key">Username: </h3>
+            <h3 class="username-value">{{ props.user.username }}</h3>
             <h3 class="birthday-key">Birthday: </h3>
             <h3 class="birthday-value">{{ preparedDate }}</h3>
-            <h3 class="telegram-key">Telegram: </h3>
-            <h3 class="telegram-value"><a href="#" class="text">{{ "@" + props.user.telegram_username }}</a></h3>
         </div>
     </div>
 </template>
@@ -34,30 +40,32 @@ const preparedDate = computed(() => prepareDate(props.user.birth_date));
 <style scoped>
 @import url('../../assets/profileview-styles.css');
 
-.common-info .email-key,
-.common-info .birthday-key,
-.common-info .telegram-key {
+.common-info .username-key,
+.common-info .birthday-key {
     grid-column: 1;
 }
 
-.common-info .email-value,
-.common-info .birthday-value,
-.common-info .telegram-value {
+.common-info .status {
+    grid-column: 1 / span 2;
+    color: #ccc;
+    padding-bottom: 12px;
+    grid-row: 1;
+}
+
+.common-info .username-value,
+.common-info .birthday-value {
     grid-column: 2;
     color: #ccc;
+    text-align: end;
 }
 
 .common-info .email-value,
 .common-info .email-key {
-    grid-row: 1;
+    grid-row: 2;
 }
 
 .common-info .birthday-value,
 .common-info .birthday-key {
-    grid-row: 2;
-}
-.common-info .telegram-value,
-.common-info .telegram-key {
     grid-row: 3;
 }
 

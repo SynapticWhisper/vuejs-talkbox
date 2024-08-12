@@ -2,7 +2,6 @@
 import ColoredGroupIcon from '../icons/ColoredGroupIcon.vue';
 import ColoredThubUpIcon from '../icons/ColoredThumbUpIcon.vue';
 import ColoredChatIcon from '../icons/ColoredChatIcon.vue';
-import ColoredAttachMoneyIcon from '../icons/ColoredAttachMoneyIcon.vue';
 
 const props = defineProps({
     user: {
@@ -14,7 +13,9 @@ const props = defineProps({
 
 <template>
     <div class="profile-stats">
-        <h2>Stats</h2>
+        <div class="cpmponent-header">
+            <h2>Stats</h2>
+        </div>
         <div class="user-stats">
             <div class="stats-col frens">
                 <ColoredGroupIcon class="icon"/>
@@ -27,10 +28,6 @@ const props = defineProps({
             <div class="stats-col posts">
                 <ColoredChatIcon class="icon"/>
                 <h3>{{ props.user.stats.posts.length }} Posts</h3>
-            </div>
-            <div class="stats-col cache">
-                <ColoredAttachMoneyIcon class="icon"/>
-                <h3>{{ props.user.stats.balance }} $</h3>
             </div>
         </div>
     </div>
@@ -54,9 +51,5 @@ const props = defineProps({
 
 .stats-col.posts {
     grid-column: 3;
-}
-
-.stats-col.cache {
-    grid-column: 4;
 }
 </style>

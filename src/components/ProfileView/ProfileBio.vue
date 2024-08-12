@@ -1,4 +1,6 @@
 <script setup>
+import EditIcon from '../icons/EditIcon.vue';
+
 defineProps({
     userBio: {
         type: String,
@@ -9,7 +11,13 @@ defineProps({
 
 <template>
     <div class="profile-bio">
-        <h2>BIO</h2>
+        <div class="cpmponent-header">
+            <h2>BIO</h2>
+            <button class="edit-profile-info">
+                <EditIcon class="icon"/>
+                edit
+            </button>
+        </div>
         <p>{{ userBio }}</p>
     </div>
 </template>

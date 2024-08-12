@@ -1,12 +1,12 @@
 {
     "id": 0,
-    "username": "Spudemun",
-    "email": "spudemun@gmail.com",
+    "name": "Slava Chernobrivets",
+    "username": "@spudemun",
+    "status": "Shit happens",
     "birth_date": "2000-01-01",
     "registration_date": "2024-06-26",
     "last_login": "2024-06-26T18:22:41.449Z",
     "telegram_id": 111222333,
-    "telegram_username": "spudemun",
     "profile_picture_url": "https://avatars.mds.yandex.net/get-shedevrum/12421798/img_de0e330cee0611eeb656be9d2539cf71/orig",
     "stats": {
         "friends": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
